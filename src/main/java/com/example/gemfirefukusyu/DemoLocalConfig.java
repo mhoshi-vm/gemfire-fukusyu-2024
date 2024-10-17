@@ -1,11 +1,12 @@
 package com.example.gemfirefukusyu;
 
 import org.apache.geode.cache.client.ClientRegionShortcut;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.config.annotation.EnableEntityDefinedRegions;
 
 @Configuration
-@Con
+@ConditionalOnProperty(value = "localregion", havingValue = "true", matchIfMissing = true)
 @EnableEntityDefinedRegions(basePackageClasses = DemoRecord.class, clientRegionShortcut = ClientRegionShortcut.LOCAL)
-class DemoConfig {
+class DemoLocalConfig {
 }
