@@ -7,6 +7,6 @@ import org.springframework.data.gemfire.config.annotation.EnableEntityDefinedReg
 
 @Configuration
 @ConditionalOnProperty(value = "localregion", havingValue = "true", matchIfMissing = true)
-@EnableEntityDefinedRegions(basePackageClasses = DemoRecord.class, clientRegionShortcut = ClientRegionShortcut.LOCAL)
+@EnableEntityDefinedRegions(basePackageClasses = DemoRecordExtend.class, clientRegionShortcut = ClientRegionShortcut.LOCAL)
 class DemoLocalConfig {
 }

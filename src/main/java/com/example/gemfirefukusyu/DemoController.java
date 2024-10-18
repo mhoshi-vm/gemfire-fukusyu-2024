@@ -12,18 +12,29 @@ class DemoController {
 
     DemoRepository demoRepository;
 
+    Integer count;
+
     public DemoController(DemoRepository demoRepository) {
         this.demoRepository = demoRepository;
+        this.count = 0;
     }
 
     @GetMapping
     List<DemoRecord> getter(){
-      return demoRepository.findAll();
+      return demoRepository.findAll()
+              .stream()
+              .map(DemoRecordExtend::demoRecord).toList();
     }
 
     @PostMapping
     void poster(@RequestParam String demoValue){
-        demoRepository.save(new DemoRecord("1", demoValue));
+        DemoRecord demoRecord = new DemoRecord(count.toString(), demoValue);
+        demoRepository.save(new DemoRecordExtend(count.toString(),demoRecord));
+        count++;
     }
 
+    @GetMapping("/sort")
+    List<DemoRecord> sorter(@RequestParam(defaultValue = "100") Integer limit){
+        return demoRepository.listDemoRecordOrderByDemoValue(limit).stream().map(DemoRecordExtend::demoRecord).toList();
+    }
 }

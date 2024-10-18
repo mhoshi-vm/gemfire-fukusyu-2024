@@ -6,6 +6,6 @@ import org.springframework.data.gemfire.config.annotation.EnableEntityDefinedReg
 
 @Configuration
 @ConditionalOnProperty(value = "localregion", havingValue = "false")
-@EnableEntityDefinedRegions(basePackageClasses = DemoRecord.class)
+@EnableEntityDefinedRegions(basePackageClasses = DemoRecordExtend.class)
 class DemoProxyConfig {
 }
